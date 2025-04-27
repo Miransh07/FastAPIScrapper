@@ -1,10 +1,10 @@
-import requests
+import requests_cache
 from bs4 import BeautifulSoup
 
 
 def fetch(url):
     # url = 'https://github.com/trending'
-    sess = requests.Session()
+    sess = requests_cache.CachedSession('API_cache', expire_after=720)
     response = sess.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     #Repository name
